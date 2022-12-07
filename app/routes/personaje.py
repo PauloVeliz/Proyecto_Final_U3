@@ -28,8 +28,13 @@ def guardar_personajes():
         inf_personaje_json = inf_personaje.json()
 
         for personaje in inf_personaje_json['results']:
-            if db.personajes.find_one({"id":personaje['id']}) is None:
+            if db.personajes.find_one({'id':personaje['id']}) is None:
                 db.personajes.insert_one(personaje)
 
     return 'Se guardaron los datos exitosamente en MongoDB.'
 
+@personajes_ruta.route('/mostrar-personajes')
+def mostrar_personajes():
+    personajes = db.personajes.aggregate([{'$sort':{'id':-1}}])
+
+    return render_template('mostrar_personajes.html',personajes=personajes)

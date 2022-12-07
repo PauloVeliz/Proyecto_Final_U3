@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %} Mostrar Personajes {% endblock %}
+
+{% block content %}
+
+<h1>Listando personajes</h1>
+
+{% for personaje in personajes %}
+    
+    <img class ="img-post" src="{{ personaje.image }}" width="25%" height="25%" />
+
+    <div>
+        {{ personaje.name }} <br>
+        {{ personaje.status }}
+        {{ personaje.species }} <br>
+        Last known Location: <br>
+        {{ personaje.location.name }} <br>
+        First seen in: <br>
+        {{ personaje.episode[0] }}
+
+    </div>
+
+{% endfor %}
+
+{% endblock %}
