@@ -1,0 +1,6 @@
+# Dependencias
+flask
+flask-bootstrap
+flask-wtf
+python-dotenv
+pymongo
