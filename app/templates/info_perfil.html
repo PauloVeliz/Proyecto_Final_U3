@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %} Perfil de {{personaje.name}} {% endblock %}
+
+{% block content %}
+
+    <a href="{{ url_for('personajes_ruta.mostrar_personajes') }}">Atrás</a>
+
+    <div class="profile">
+        <img class="img" src="{{ personaje.image }}"/>
+  
+    <div class="info">
+      <h3>{{ personaje.name }}</h3>
+
+        Estado: 
+        {{ personaje.status }}
+        {{ personaje.species }} <br>
+
+        Tipo: 
+        {{ personaje.type }} <br>
+
+        Género: 
+        {{ personaje.gender }} <br>
+
+        Originario de: 
+        {{ personaje.origin.name }} <br>
+
+        Last known Location: 
+        {{ personaje.location.name }} <br>
+
+        First seen in: <br>
+        {{ personaje.episode[0] }} <br>
+
+        Aparece en los episodios: <br>
+        {% for episode in personaje.episode %}
+            {{ episode }} <br>
+        {% endfor %}
+        
+        Fecha de creación: 
+        {{ personaje.created }}
+    
+    </div>
+    </div>
+
+
+
+{% endblock %}

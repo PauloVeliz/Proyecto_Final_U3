@@ -4,20 +4,31 @@
 
 {% block content %}
 
-<h1>Listando personajes</h1>
+<h1>Listado de personajes</h1>
+<p>
+    <a href="{{url_for('personajes_ruta.index')}}"> Home </a>
+</p>
 
 {% for personaje in personajes %}
-    
-    <img class ="img-post" src="{{ personaje.image }}" width="25%" height="25%" />
 
-    <div>
+    <div class="profile">
+        <img class ="img" src="{{ personaje.image }}" width="25%" height="25%" />
+    
+        <div class="info">
+        
+        <a href="{{url_for('personajes_ruta.info_perfil',id=personaje.id)}}"> Ver Perfil </a> <br>
+
         {{ personaje.name }} <br>
         {{ personaje.status }}
         {{ personaje.species }} <br>
+
         Last known Location: <br>
         {{ personaje.location.name }} <br>
+
         First seen in: <br>
         {{ personaje.episode[0] }}
+
+    </div>
 
     </div>
 

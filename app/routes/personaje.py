@@ -9,10 +9,6 @@ personajes_ruta = Blueprint('personajes_ruta',__name__)
 def index():
     return render_template('index.html')
 
-@personajes_ruta.route('/crear-perfil')
-def crear_perfil():
-    return render_template('crear_perfil.html')
-
 @personajes_ruta.route('/guardar-personajes')
 def guardar_personajes():
     # n es la página del personaje a cargar
@@ -31,10 +27,17 @@ def guardar_personajes():
             if db.personajes.find_one({'id':personaje['id']}) is None:
                 db.personajes.insert_one(personaje)
 
-    return 'Se guardaron los datos exitosamente en MongoDB.'
+    return render_template('guarda_personajes.html')
 
 @personajes_ruta.route('/mostrar-personajes')
 def mostrar_personajes():
     personajes = db.personajes.aggregate([{'$sort':{'id':-1}}])
 
     return render_template('mostrar_personajes.html',personajes=personajes)
+
+@personajes_ruta.route('/mostrar-personajes/<id>')
+def info_perfil(id):
+    id = int(id)
+    personaje = db.personajes.find_one({'id':id})
+
+    return render_template('info_perfil.html',personaje=personaje)

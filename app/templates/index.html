@@ -1,9 +1,25 @@
 {% extends "base.html" %}
 
-{% block title %} Lista de Personajes {% endblock %}
+{% block title %} Proyecto Personajes {% endblock %}
 
 {% block content %}
 
-<h1>Lista de Personajes</h1>
+<h1>Bienvenido al proyeccto de Personajes</h1>
+
+<p>
+     
+    <a href="{{url_for('personajes_ruta.guardar_personajes')}}">
+        Guardar personajes en MongoDB.
+    </a>
+
+</p>
+
+<p>
+    
+    <a href="{{url_for('personajes_ruta.mostrar_personajes')}}">
+        Listar personajes.
+    </a>
+
+</p>
 
 {% endblock %}
